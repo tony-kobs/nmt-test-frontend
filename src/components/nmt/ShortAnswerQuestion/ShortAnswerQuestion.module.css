@@ -1,0 +1,19 @@
+.input {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: 48px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0 16px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+
+.input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-ring);
+}

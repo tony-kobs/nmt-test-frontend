@@ -1,0 +1,1 @@
+export { MatchingQuestion } from "./MatchingQuestion";

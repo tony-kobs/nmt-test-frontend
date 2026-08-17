@@ -1,0 +1,82 @@
+.root {
+  min-width: 0;
+}
+
+.wide {
+  flex: 1;
+}
+
+.narrow {
+  width: 88px;
+  flex: 0 0 88px;
+}
+
+.root :global(.nmt-select__control) {
+  min-height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color var(--t) var(--ease),
+    box-shadow var(--t) var(--ease),
+    background-color var(--t) var(--ease);
+}
+
+.root :global(.nmt-select__control:hover) {
+  border-color: var(--green);
+}
+
+.root :global(.nmt-select__control--is-focused) {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-ring);
+}
+
+.root :global(.nmt-select__control--is-disabled) {
+  background: var(--surface-muted);
+  cursor: not-allowed;
+}
+
+.root :global(.nmt-select__value-container) {
+  padding: 0 8px 0 12px;
+}
+
+.narrow :global(.nmt-select__value-container) {
+  padding: 0 4px 0 8px;
+  justify-content: center;
+}
+
+.root :global(.nmt-select__single-value),
+.root :global(.nmt-select__placeholder),
+.root :global(.nmt-select__input-container) {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.root :global(.nmt-select__indicator-separator) {
+  display: none;
+}
+
+.root :global(.nmt-select__dropdown-indicator) {
+  color: var(--ink);
+  padding: 0 10px;
+  transition: transform var(--t) var(--ease), color var(--t) var(--ease);
+}
+
+.root :global(.nmt-select__control--menu-is-open .nmt-select__dropdown-indicator) {
+  transform: rotate(180deg);
+  color: var(--green);
+}
+
+.countBox {
+  display: inline-flex;
+  width: 88px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 16px;
+}

@@ -1,0 +1,52 @@
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .top {
+    font-size: 17px;
+  }
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--main-pt);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--title);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.score {
+  margin: 16px 0 0;
+  font-size: var(--lead);
+  line-height: 1.7;
+}
+
+.topics {
+  width: 100%;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.topic {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.review {
+  width: 100%;
+  margin-top: 24px;
+  text-align: left;
+}

@@ -1,0 +1,50 @@
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .top {
+    font-size: 17px;
+  }
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--main-pt);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--title);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.empty {
+  max-width: 560px;
+  margin: 16px 0 0;
+  font-size: var(--lead);
+  line-height: 1.7;
+}
+
+.list {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  font-size: 17px;
+}
+
+.item {
+  margin: 0;
+}

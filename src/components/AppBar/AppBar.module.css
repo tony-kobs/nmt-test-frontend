@@ -1,0 +1,122 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--page) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  transition: background-color var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  max-width: var(--page-max);
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 10px var(--pad-x);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    gap: 16px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .inner {
+    min-height: 64px;
+  }
+
+  .nav {
+    gap: 20px;
+    font-size: 17px;
+  }
+}
+
+.muted {
+  color: var(--muted);
+  transition: color var(--t) var(--ease);
+}
+
+.active {
+  font-weight: 600;
+}
+
+.trainer {
+  border: 2px solid var(--green);
+  padding: 4px 8px;
+  font-weight: 500;
+  color: var(--green);
+  transition: background-color var(--t) var(--ease), color var(--t) var(--ease);
+}
+
+@media (min-width: 768px) {
+  .trainer {
+    padding: 4px 12px;
+  }
+}
+
+.trainer:hover {
+  background: var(--green);
+  color: var(--page);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    gap: 16px;
+    font-size: 15px;
+  }
+}
+
+.link {
+  color: var(--link);
+  transition: color var(--t) var(--ease);
+}
+
+.link:hover,
+.theme:hover {
+  color: var(--link-hover);
+}
+
+.theme {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--link);
+  cursor: pointer;
+  transition: color var(--t) var(--ease);
+}
+
+.themeLabel {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .themeLabel {
+    display: inline;
+  }
+}

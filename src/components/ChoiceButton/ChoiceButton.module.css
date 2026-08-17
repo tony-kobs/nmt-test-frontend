@@ -1,0 +1,79 @@
+.button {
+  min-height: 64px;
+  padding: 14px 12px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  font-size: 16px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition:
+    background-color var(--t) var(--ease),
+    border-color var(--t) var(--ease),
+    box-shadow var(--t) var(--ease),
+    transform var(--t) var(--ease),
+    color var(--t) var(--ease);
+}
+
+@media (min-width: 768px) {
+  .button {
+    min-height: 72px;
+    padding: 16px 12px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .button {
+    min-height: 80px;
+    padding: 18px 16px;
+  }
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+.idle:hover:not(:disabled) {
+  border-color: var(--green);
+  background: var(--green-hover);
+  box-shadow: 0 0 0 3px var(--green-ring);
+  transform: translateY(-1px);
+}
+
+.selected {
+  border-color: var(--green);
+  background: var(--green-soft);
+  font-weight: 500;
+  box-shadow: inset 0 0 0 2px var(--green-dark);
+}
+
+.correct {
+  border-color: var(--green);
+  background: var(--green-bg);
+  color: var(--green-dark);
+}
+
+.wrong {
+  border-color: var(--red-border);
+  background: var(--red-bg);
+  color: var(--red-text);
+}
+
+.muted {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--disabled);
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.letter {
+  margin-right: 8px;
+  font-weight: 500;
+}

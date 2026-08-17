@@ -1,0 +1,198 @@
+@import "katex/dist/katex.min.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  color-scheme: light;
+  --grid: #d4dce6;
+  --ink: #161616;
+  --page: #f4f6f8;
+  --surface: #ffffff;
+  --surface-hover: #fafafa;
+  --surface-muted: #f5f5f5;
+  --border: #000000;
+  --green: #1f9d4a;
+  --green-dark: #145c2c;
+  --green-soft: #c8efd4;
+  --green-bg: #d8f5e3;
+  --green-hover: #e8f8ee;
+  --green-ring: rgb(31 157 74 / 22%);
+  --green-lift: rgb(31 157 74 / 18%);
+  --red: #c0392b;
+  --red-text: #8a1f1f;
+  --red-bg: #fde2e2;
+  --red-border: #d64545;
+  --red-lift: rgb(192 57 43 / 10%);
+  --blue: #4a7dff;
+  --blue-hover: #2f5fe0;
+  --muted: #525252;
+  --subtle: #737373;
+  --line: #d4d4d4;
+  --disabled: #a3a3a3;
+  --link: #404040;
+  --link-hover: #000000;
+  --overlay: rgb(0 0 0 / 30%);
+  --shadow: rgb(0 0 0 / 8%);
+  --mistake-bg: #fff8f7;
+  --white: #ffffff;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t: 0.22s;
+  --page-max: 100%;
+  --pad-x: 16px;
+  --pad-y: 24px;
+  --title: 24px;
+  --lead: 16px;
+  --main-pt: 36px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-max: 760px;
+    --pad-x: 32px;
+    --pad-y: 40px;
+    --title: 28px;
+    --lead: 18px;
+    --main-pt: 56px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --page-max: 960px;
+    --pad-x: 40px;
+    --pad-y: 48px;
+    --title: 32px;
+    --lead: 19px;
+    --main-pt: 64px;
+  }
+}
+
+html.dark {
+  color-scheme: dark;
+  --grid: #2a3340;
+  --ink: #e8eaed;
+  --page: #10141a;
+  --surface: #1c232e;
+  --surface-hover: #252d3a;
+  --surface-muted: #161c26;
+  --border: #8b96a8;
+  --green: #46d078;
+  --green-dark: #9ee8b6;
+  --green-soft: #1a3d2a;
+  --green-bg: #143326;
+  --green-hover: #1a3528;
+  --green-ring: rgb(70 208 120 / 32%);
+  --green-lift: rgb(70 208 120 / 22%);
+  --red: #e5736a;
+  --red-text: #f5b8b2;
+  --red-bg: #3a1e1e;
+  --red-border: #e5736a;
+  --red-lift: rgb(229 115 106 / 22%);
+  --blue: #7eabff;
+  --blue-hover: #a6c4ff;
+  --muted: #b4bbc6;
+  --subtle: #8d96a4;
+  --line: #3a4454;
+  --disabled: #7a8492;
+  --link: #b4bbc6;
+  --link-hover: #ffffff;
+  --overlay: rgb(4 8 14 / 62%);
+  --shadow: rgb(0 0 0 / 40%);
+  --mistake-bg: #2c1b1b;
+  --white: #1c232e;
+}
+
+body {
+  color: var(--ink);
+  background-color: var(--page);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-attachment: fixed;
+}
+
+.katex {
+  font-size: 1.05em;
+  color: inherit;
+}
+
+::selection {
+  background: var(--green-soft);
+  color: var(--ink);
+}
+
+.nmt-select__menu {
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 6px 8px 0 var(--shadow);
+  animation: menuIn 0.18s var(--ease);
+}
+
+.nmt-select__menu-list {
+  padding: 0;
+}
+
+.nmt-select__option {
+  padding: 10px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--t) var(--ease);
+}
+
+.nmt-select__option--is-focused {
+  background: var(--green-hover);
+}
+
+.nmt-select__option--is-selected {
+  background: var(--green-soft);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

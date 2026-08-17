@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  cursor: pointer;
+  transition: color var(--t) var(--ease), transform var(--t) var(--ease);
+}
+
+.button:hover {
+  color: var(--blue-hover);
+  transform: translateX(-2px);
+}

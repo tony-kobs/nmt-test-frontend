@@ -1,0 +1,21 @@
+.time {
+  margin: 0;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 768px) {
+  .time {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .time {
+    font-size: 18px;
+  }
+}
+
+.warn {
+  color: var(--red);
+}
