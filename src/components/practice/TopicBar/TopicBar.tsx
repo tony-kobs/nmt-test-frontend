@@ -15,7 +15,6 @@ type TopicBarProps = {
   onTopicChange: (id: string) => void;
   onTaskCountChange: (count: number) => void;
   onStart: () => void;
-  onBack: () => void;
 };
 
 export function TopicBar({
@@ -27,12 +26,11 @@ export function TopicBar({
   onTopicChange,
   onTaskCountChange,
   onStart,
-  onBack,
 }: TopicBarProps) {
   return (
     <header className={css.header}>
       <div className={css.row}>
-        <BackButton onClick={onBack} />
+        <BackButton href="/" />
         <label className={css.label}>
           <span className={css.fixed}>Обери тему:</span>
           <Select

@@ -24,6 +24,7 @@
 
 .card {
   border: 2px solid var(--border);
+  border-radius: var(--radius);
   border-left: 8px solid var(--red);
   background: var(--mistake-bg);
   padding: 16px;

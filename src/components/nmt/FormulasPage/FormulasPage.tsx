@@ -7,7 +7,7 @@ export function FormulasPage() {
   return (
     <PageLayout>
       <header className={css.top}>
-        <BackButton href="/nmt" />
+        <BackButton href="/" />
         <span>Обери тему:</span>
         <span className={css.accent}>Довідкові матеріали</span>
       </header>

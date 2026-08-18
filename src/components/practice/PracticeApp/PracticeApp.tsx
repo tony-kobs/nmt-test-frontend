@@ -24,7 +24,6 @@ export function PracticeApp() {
         onTopicChange={practice.handleTopicChange}
         onTaskCountChange={practice.setTaskCount}
         onStart={practice.startTest}
-        onBack={practice.resetToIdle}
       />
 
       <main className={css.main}>

@@ -2,6 +2,7 @@
   min-height: 64px;
   padding: 14px 12px;
   border: 2px solid var(--border);
+  border-radius: var(--radius);
   background: var(--surface);
   font-size: 16px;
   line-height: 1.35;

@@ -1,9 +1,8 @@
 "use client";
 
-import { BackButton } from "@/components/BackButton";
 import { Button } from "@/components/Button";
 import { PageLayout } from "@/components/PageLayout";
-import { Select, selectCss } from "@/components/Select";
+import { Select } from "@/components/Select";
 import { StatsGrid } from "@/components/StatsGrid";
 import { HUB_MODES } from "@/constants";
 import { useNmtHub } from "@/hooks/useNmtHub";
@@ -16,8 +15,7 @@ export function NmtHub() {
   return (
     <PageLayout>
       <header className={css.header}>
-        <div className={css.row}>
-          <BackButton href="/" />
+        <div className={css.bar}>
           <label className={css.label}>
             <span className={css.fixed}>Обери режим:</span>
             <Select
@@ -28,16 +26,11 @@ export function NmtHub() {
               options={HUB_MODES.map((item) => ({ value: item.id, label: item.title }))}
             />
           </label>
-        </div>
-        <div className={css.toolbar}>
-          <span>Пройти</span>
-          <span className={selectCss.countBox}>
-            {hub.mode === "practice" || hub.mode === "weak" ? "—" : "22"}
-          </span>
-          <span>завдань</span>
-          <Button variant="start" onClick={hub.start}>
-            Старт
-          </Button>
+          <div className={css.toolbar}>
+            <Button variant="start" onClick={hub.start}>
+              Старт
+            </Button>
+          </div>
         </div>
         {hub.error ? <p className={css.error}>{hub.error}</p> : null}
       </header>

@@ -10,6 +10,15 @@ html,
 body {
   min-height: 100%;
   margin: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 button,
@@ -59,6 +68,7 @@ a {
   --white: #ffffff;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --t: 0.22s;
+  --radius: 12px;
   --page-max: 100%;
   --pad-x: 16px;
   --pad-y: 24px;
@@ -147,7 +157,7 @@ body {
 .nmt-select__menu {
   margin-top: 4px;
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
   box-shadow: 6px 8px 0 var(--shadow);

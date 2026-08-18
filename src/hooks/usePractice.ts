@@ -74,16 +74,6 @@ export function usePractice() {
     setPhase("answering");
   }
 
-  function resetToIdle() {
-    setPhase("idle");
-    setQueue([]);
-    setIndex(0);
-    setRecords([]);
-    setSelectedOption(null);
-    setInputValue("");
-    setLastCorrect(null);
-  }
-
   function submitAnswer(raw: string) {
     if (phase !== "answering" || !current) return;
     const userAnswer = raw.trim();
@@ -135,7 +125,6 @@ export function usePractice() {
     setTaskCount: (count: number) => setTaskCount(clampInt(count, PRACTICE_MIN_TASKS, maxCount)),
     setInputValue,
     startTest,
-    resetToIdle,
     submitAnswer,
     goNext,
   };

@@ -23,13 +23,13 @@ export function TestShell() {
     return (
       <PageLayout>
         <header className={css.row}>
-          <BackButton href="/nmt" />
+          <BackButton href="/" />
           <span>НМТ 2026</span>
         </header>
         <main className={css.main}>
           <h1 className={css.title}>Тест не знайдено</h1>
           <p className={css.lead}>Немає активної спроби. Поверніться на тренажер і натисніть «Старт».</p>
-          <ButtonLink href="/nmt" className={buttonCss.offset}>
+          <ButtonLink href="/" className={buttonCss.offset}>
             На тренажер
           </ButtonLink>
         </main>
@@ -66,7 +66,7 @@ export function TestShell() {
     <PageLayout>
       <header className={css.top}>
         <div className={css.row}>
-          <BackButton href="/nmt" />
+          <BackButton href="/" />
           <div className={css.titleRow}>
             <span className={css.mode}>{title}</span>
             {session.endsAt ? <Timer endsAt={session.endsAt} onExpire={test.onExpire} /> : <span />}
