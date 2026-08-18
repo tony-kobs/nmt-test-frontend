@@ -7,6 +7,7 @@ import { persistAndGo } from "@/helpers/navigation";
 import { createSession, generateFullTest, generateRandomTest } from "@/helpers/testGenerator";
 import { getWeakTopics } from "@/helpers/weakTopics";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { clearCurrentResult } from "@/redux/results/slice";
 import { clearSession, setSession } from "@/redux/session/slice";
 import type { HubMode } from "@/types/test";
 
@@ -43,6 +44,7 @@ export function useNmtHub() {
         toast.error("Не вдалося зібрати завдання");
         return;
       }
+      dispatch(clearCurrentResult());
       dispatch(setSession(test));
       await persistAndGo("/nmt/test");
     } catch (err) {
