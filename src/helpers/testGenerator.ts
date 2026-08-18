@@ -8,6 +8,14 @@ function uniqueTake(pool: Question[], count: number): Question[] {
   return shuffle(pool).slice(0, Math.min(count, pool.length));
 }
 
+function filterPracticePool(options: PracticeOptions): Question[] {
+  return questionsBank.filter((item) => {
+    const categoryOk = options.category === "all" || item.category === options.category;
+    const difficultyOk = options.difficulty === "any" || item.difficulty === options.difficulty;
+    return categoryOk && difficultyOk;
+  });
+}
+
 export function generateFullTest(): Question[] {
   const singles = uniqueTake(
     questionsBank.filter((item) => item.type === "single"),
@@ -25,18 +33,8 @@ export function generateFullTest(): Question[] {
 }
 
 export function generatePracticeTest(options: PracticeOptions): Question[] {
-  const pool = questionsBank.filter((item) => {
-    const categoryOk = options.category === "all" || item.category === options.category;
-    const difficultyOk = options.difficulty === "any" || item.difficulty === options.difficulty;
-    return categoryOk && difficultyOk;
-  });
-  const picked = uniqueTake(pool, options.count);
-  if (picked.length >= options.count) return picked;
-  const extra = uniqueTake(
-    questionsBank.filter((item) => !picked.some((question) => question.id === item.id)),
-    options.count - picked.length,
-  );
-  return [...picked, ...extra];
+  const pool = filterPracticePool(options);
+  return uniqueTake(pool, Math.min(options.count, pool.length));
 }
 
 export function generateRandomTest(count: number): Question[] {
@@ -69,9 +67,5 @@ export function createSession(
 }
 
 export function remainingPoolSize(category: CategoryId | "all", difficulty: Difficulty | "any") {
-  return questionsBank.filter((item) => {
-    const categoryOk = category === "all" || item.category === category;
-    const difficultyOk = difficulty === "any" || item.difficulty === difficulty;
-    return categoryOk && difficultyOk;
-  }).length;
+  return filterPracticePool({ category, difficulty, count: 10 }).length;
 }
