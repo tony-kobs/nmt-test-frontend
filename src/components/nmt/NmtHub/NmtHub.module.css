@@ -1,18 +1,21 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.row {
+.bar {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   gap: 12px;
 }
 
 @media (min-width: 768px) {
-  .row {
+  .bar {
+    flex-direction: row;
     align-items: center;
+    gap: 16px;
   }
 }
 
@@ -41,30 +44,18 @@
 
 .toolbar {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  padding-left: 0;
-  font-size: 16px;
 }
 
 @media (min-width: 768px) {
   .toolbar {
-    padding-left: 44px;
-    font-size: 17px;
+    flex-shrink: 0;
   }
 }
 
 .error {
   margin: 0;
-  padding-left: 0;
   color: var(--red);
-}
-
-@media (min-width: 768px) {
-  .error {
-    padding-left: 44px;
-  }
 }
 
 .resume {
@@ -73,14 +64,7 @@
   align-items: center;
   gap: 12px;
   margin-top: 24px;
-  padding-left: 0;
   font-size: 16px;
-}
-
-@media (min-width: 768px) {
-  .resume {
-    padding-left: 44px;
-  }
 }
 
 .main {

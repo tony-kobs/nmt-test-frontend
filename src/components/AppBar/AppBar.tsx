@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { clsx } from "clsx";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { toggleTheme } from "@/redux/theme/slice";
@@ -11,26 +12,36 @@ export function AppBar() {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.theme.value);
-  const onTrainer = pathname.startsWith("/nmt");
+  const onPractice = pathname.startsWith("/practice");
+  const onFormulas = pathname.startsWith("/nmt/formulas");
+  const onResults = pathname.startsWith("/nmt/results");
 
   return (
     <header className={css.header}>
       <div className={css.inner}>
-        <nav className={css.nav}>
-          <Link href="/" className={onTrainer ? css.muted : css.active}>
-            Практика
-          </Link>
-          <Link href="/nmt" className={css.trainer}>
+        <nav className={css.nav} aria-label="Розділи">
+          <Link
+            href="/"
+            className={clsx(css.tab, !onPractice && css.tabActive)}
+            aria-current={!onPractice ? "page" : undefined}
+          >
             Тренажер НМТ
+          </Link>
+          <Link
+            href="/practice"
+            className={clsx(css.tab, onPractice && css.tabActive)}
+            aria-current={onPractice ? "page" : undefined}
+          >
+            Практика
           </Link>
         </nav>
         <div className={css.actions}>
-          {onTrainer && (
+          {!onPractice && (
             <>
-              <Link href="/nmt/formulas" className={css.link}>
+              <Link href="/nmt/formulas" className={clsx(css.link, onFormulas && css.linkActive)}>
                 Формули
               </Link>
-              <Link href="/nmt/results" className={css.link}>
+              <Link href="/nmt/results" className={clsx(css.link, onResults && css.linkActive)}>
                 Результати
               </Link>
             </>

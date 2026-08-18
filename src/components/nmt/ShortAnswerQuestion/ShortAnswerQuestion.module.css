@@ -5,6 +5,7 @@
   height: 48px;
   margin: 0 auto;
   border: 1px solid var(--border);
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--ink);
   padding: 0 16px;

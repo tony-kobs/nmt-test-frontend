@@ -24,6 +24,7 @@
   width: 36px;
   height: 36px;
   border: 1px solid var(--border);
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--ink);
   font-size: 14px;

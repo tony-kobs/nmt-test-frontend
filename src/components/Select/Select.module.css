@@ -14,7 +14,7 @@
 .root :global(.nmt-select__control) {
   min-height: 40px;
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: var(--radius);
   box-shadow: none;
   background: var(--surface);
   cursor: pointer;
@@ -55,6 +55,10 @@
   font-size: 16px;
 }
 
+.root :global(.nmt-select__input) {
+  caret-color: transparent;
+}
+
 .root :global(.nmt-select__indicator-separator) {
   display: none;
 }
@@ -77,6 +81,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border);
+  border-radius: var(--radius);
   background: var(--surface);
   font-size: 16px;
 }

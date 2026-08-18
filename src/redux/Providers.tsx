@@ -49,7 +49,7 @@ export function Providers({ children }: { children: ReactNode }) {
               duration: 2500,
               style: {
                 border: "1px solid var(--border)",
-                borderRadius: 0,
+                borderRadius: 12,
                 background: "var(--surface)",
                 color: "var(--ink)",
                 boxShadow: "6px 8px 0 var(--shadow)",

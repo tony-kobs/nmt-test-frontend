@@ -15,7 +15,7 @@ export function ResultsHistory() {
   return (
     <PageLayout>
       <header className={css.top}>
-        <BackButton href="/nmt" />
+        <BackButton href="/" />
         <span>Мої результати</span>
       </header>
 

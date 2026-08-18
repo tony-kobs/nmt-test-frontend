@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "НМТ математика — практика",
-  description: "Інтерактивні завдання та тренажер НМТ-2026 з математики.",
+  title: "НМТ математика — тренажер",
+  description: "Тренажер НМТ-2026 з математики та інтерактивна практика за темами.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

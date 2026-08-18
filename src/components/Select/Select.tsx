@@ -47,7 +47,7 @@ export function Select({
       value={selected}
       onChange={(option: SingleValue<SelectOption>) => onChange(option?.value ?? "")}
       isDisabled={disabled}
-      isSearchable={!narrow}
+      isSearchable={false}
       isClearable={false}
       placeholder={placeholder}
       aria-label={ariaLabel}
@@ -55,7 +55,7 @@ export function Select({
       menuPortalTarget={portalTarget ?? undefined}
       theme={(selectTheme) => ({
         ...selectTheme,
-        borderRadius: 0,
+        borderRadius: 12,
         colors: {
           ...selectTheme.colors,
           primary: "var(--green)",
@@ -79,7 +79,7 @@ export function Select({
         control: (base, state) => ({
           ...base,
           minHeight: 40,
-          borderRadius: 0,
+          borderRadius: 12,
           borderColor: state.isFocused ? "var(--green)" : "var(--border)",
           backgroundColor: state.isDisabled ? "var(--surface-muted)" : "var(--surface)",
           boxShadow: state.isFocused ? "0 0 0 3px var(--green-ring)" : "none",
@@ -92,7 +92,7 @@ export function Select({
           ...base,
           marginTop: 4,
           border: "1px solid var(--border)",
-          borderRadius: 0,
+          borderRadius: 12,
           overflow: "hidden",
           backgroundColor: "var(--surface)",
           boxShadow: "6px 8px 0 var(--shadow)",
@@ -116,7 +116,12 @@ export function Select({
         }),
         singleValue: (base) => ({ ...base, color: "var(--ink)", margin: 0 }),
         placeholder: (base) => ({ ...base, color: "var(--muted)", margin: 0 }),
-        input: (base) => ({ ...base, color: "var(--ink)", margin: 0 }),
+        input: (base) => ({
+          ...base,
+          color: "transparent",
+          margin: 0,
+          caretColor: "transparent",
+        }),
         dropdownIndicator: (base) => ({
           ...base,
           color: "var(--ink)",

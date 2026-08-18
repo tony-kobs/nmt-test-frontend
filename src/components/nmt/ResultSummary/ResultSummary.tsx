@@ -23,7 +23,7 @@ export function ResultSummary({
   return (
     <PageLayout>
       <header className={css.top}>
-        <BackButton href="/nmt" />
+        <BackButton href="/" />
         <span>{MODE_LABEL[result.mode]}</span>
       </header>
 

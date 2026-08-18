@@ -1,5 +1,5 @@
-import { PracticeApp } from "@/components/practice/PracticeApp";
+import { NmtHub } from "@/components/nmt/NmtHub";
 
 export default function HomePage() {
-  return <PracticeApp />;
+  return <NmtHub />;
 }
