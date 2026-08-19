@@ -11,6 +11,7 @@ import { Select } from "@/components/Select";
 import { persistAndGo } from "@/helpers/navigation";
 import { createSession, generatePracticeTest, remainingPoolSize } from "@/helpers/testGenerator";
 import { useAppDispatch } from "@/redux/hooks";
+import { clearCurrentResult } from "@/redux/results/slice";
 import { setSession } from "@/redux/session/slice";
 import { CATEGORY_LABELS, type CategoryId } from "@/types/question";
 import type { PracticeOptions } from "@/types/test";

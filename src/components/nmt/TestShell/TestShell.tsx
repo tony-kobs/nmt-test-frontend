@@ -37,7 +37,7 @@ export function TestShell() {
     );
   }
 
-  if (test.result) {
+  if (!test.session && test.result) {
     return (
       <ResultSummary
         result={test.result}

@@ -7,7 +7,7 @@ import { questionsBank } from "@/data/questions";
 import { evaluateTest } from "@/helpers/scoring";
 import { createSession, generateFullTest, generatePracticeTest, generateRandomTest } from "@/helpers/testGenerator";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addResult, mergeTopicStats } from "@/redux/results/slice";
+import { addResult, clearCurrentResult, mergeTopicStats, setCurrentResult } from "@/redux/results/slice";
 import { clearSession, setAnswer, setCurrentIndex, setSession, toggleFlag } from "@/redux/session/slice";
 import type { TestResult } from "@/types/result";
 import type { ActiveSession, AnswerValue } from "@/types/test";
@@ -15,7 +15,7 @@ import type { ActiveSession, AnswerValue } from "@/types/test";
 export function useNmtTest() {
   const dispatch = useAppDispatch();
   const session = useAppSelector((state) => state.session.current);
-  const [result, setResult] = useState<TestResult | null>(null);
+  const result = useAppSelector((state) => state.results.current);
   const [showFormulas, setShowFormulas] = useState(false);
   const [confirmFinish, setConfirmFinish] = useState(false);
   const finishing = useRef(false);
@@ -26,7 +26,7 @@ export function useNmtTest() {
       dispatch(setSession(next));
       setShowFormulas(false);
       setConfirmFinish(false);
-      setResult(null);
+      dispatch(clearCurrentResult());
     },
     [dispatch],
   );
@@ -46,7 +46,7 @@ export function useNmtTest() {
       dispatch(addResult(nextResult));
       dispatch(mergeTopicStats(evaluated.topicStats));
       dispatch(clearSession());
-      setResult(nextResult);
+      dispatch(setCurrentResult(nextResult));
       toast.success("Тест завершено");
     },
     [dispatch],
