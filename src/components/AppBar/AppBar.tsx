@@ -12,6 +12,7 @@ export function AppBar() {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.theme.value);
+  const onTrainer = pathname.startsWith("/nmt");
   const onPractice = pathname.startsWith("/practice");
   const onFormulas = pathname.startsWith("/nmt/formulas");
   const onResults = pathname.startsWith("/nmt/results");
@@ -21,9 +22,9 @@ export function AppBar() {
       <div className={css.inner}>
         <nav className={css.nav} aria-label="Розділи">
           <Link
-            href="/"
-            className={clsx(css.tab, !onPractice && css.tabActive)}
-            aria-current={!onPractice ? "page" : undefined}
+            href="/nmt"
+            className={clsx(css.tab, onTrainer && css.tabActive)}
+            aria-current={onTrainer ? "page" : undefined}
           >
             Тренажер НМТ
           </Link>
@@ -36,7 +37,7 @@ export function AppBar() {
           </Link>
         </nav>
         <div className={css.actions}>
-          {!onPractice && (
+          {onTrainer && (
             <>
               <Link href="/nmt/formulas" className={clsx(css.link, onFormulas && css.linkActive)}>
                 Формули

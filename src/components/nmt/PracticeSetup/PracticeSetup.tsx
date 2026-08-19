@@ -44,7 +44,12 @@ export function PracticeSetup() {
         difficulty: values.difficulty,
         count: values.count,
       });
-      dispatch(clearCurrentResult());
+
+      if (questions.length === 0) {
+        toast.error("Немає доступних завдань за вибраними фільтрами");
+        return;
+      }
+
       dispatch(
         setSession(
           createSession("practice", questions, {
@@ -68,7 +73,7 @@ export function PracticeSetup() {
     <PageLayout as="form" onSubmit={formik.handleSubmit}>
       <header className={css.header}>
         <div className={css.row}>
-          <BackButton href="/" />
+          <BackButton href="/nmt" />
           <label className={css.label}>
             <span className={css.fixed}>Обери тему:</span>
             <Select

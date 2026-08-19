@@ -1,5 +1,5 @@
-import { NmtHub } from "@/components/nmt/NmtHub";
+import { WelcomePage } from "@/components/WelcomePage";
 
 export default function HomePage() {
-  return <NmtHub />;
+  return <WelcomePage />;
 }

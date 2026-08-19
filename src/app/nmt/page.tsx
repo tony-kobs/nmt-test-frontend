@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { NmtHub } from "@/components/nmt/NmtHub";
 
 export default function NmtPage() {
-  redirect("/");
+  return <NmtHub />;
 }
