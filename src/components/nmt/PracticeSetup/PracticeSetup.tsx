@@ -43,6 +43,12 @@ export function PracticeSetup() {
         difficulty: values.difficulty,
         count: values.count,
       });
+
+      if (questions.length === 0) {
+        toast.error("Немає доступних завдань за вибраними фільтрами");
+        return;
+      }
+
       dispatch(
         setSession(
           createSession("practice", questions, {
