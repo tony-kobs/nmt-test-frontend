@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "НМТ математика — тренажер",
+  title: "НМТ математика — підготовка",
   description: "Тренажер НМТ-2026 з математики та інтерактивна практика за темами.",
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { BackButton } from "@/components/BackButton";
 import { Button } from "@/components/Button";
 import { PageLayout } from "@/components/PageLayout";
 import { Select } from "@/components/Select";
@@ -16,6 +17,7 @@ export function NmtHub() {
     <PageLayout>
       <header className={css.header}>
         <div className={css.bar}>
+          <BackButton href="/" />
           <label className={css.label}>
             <span className={css.fixed}>Обери режим:</span>
             <Select

@@ -66,7 +66,7 @@ export function PracticeSetup() {
     <PageLayout as="form" onSubmit={formik.handleSubmit}>
       <header className={css.header}>
         <div className={css.row}>
-          <BackButton href="/" />
+          <BackButton href="/nmt" />
           <label className={css.label}>
             <span className={css.fixed}>Обери тему:</span>
             <Select
