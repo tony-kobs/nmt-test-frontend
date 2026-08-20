@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AppBar } from "@/components/AppBar";
+import Footer from "@/components/Footer";
 import { Providers } from "@/redux/Providers";
 import "./globals.css";
 
@@ -11,10 +12,15 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "НМТ математика — підготовка",
-  description: "Тренажер НМТ-2026 з математики та інтерактивна практика за темами.",
+  description:
+    "Тренажер НМТ-2026 з математики та інтерактивна практика за темами.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="uk" suppressHydrationWarning>
       <head>
@@ -28,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <AppBar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
