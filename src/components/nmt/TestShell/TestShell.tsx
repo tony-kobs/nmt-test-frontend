@@ -68,7 +68,10 @@ export function TestShell() {
         <div className={css.row}>
           <BackButton href="/nmt" />
           <div className={css.titleRow}>
-            <span className={css.mode}>{title}</span>
+            <span className={css.mode}>
+              {title}
+              {session.variantTitle ? ` · ${session.variantTitle}` : ""}
+            </span>
             {session.endsAt ? <Timer endsAt={session.endsAt} onExpire={test.onExpire} /> : <span />}
           </div>
         </div>
@@ -86,10 +89,10 @@ export function TestShell() {
       <main className={css.main}>
         <p className={css.kind}>
           {question.type === "matching"
-            ? "Встановлення відповідності"
+            ? "Відповідність: 1 бал за кожну правильну пару (0–3)"
             : question.type === "short"
-              ? "Коротка відповідь"
-              : "Одна правильна відповідь"}
+              ? "Коротка відповідь: 0 або 2 бали"
+              : "Вибір однієї відповіді: 0 або 1 бал"}
         </p>
         <h1 className={css.title}>Завдання {session.currentIndex + 1}</h1>
         <p className={css.prompt}>
@@ -110,6 +113,7 @@ export function TestShell() {
               right={question.matchingRight}
               value={answer?.type === "matching" ? answer.value : {}}
               onChange={(value) => test.saveAnswer(question.id, { type: "matching", value })}
+              instancePrefix={`nmt-${question.id}`}
             />
           ) : null}
           {question.type === "short" ? (

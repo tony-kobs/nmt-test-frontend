@@ -1,6 +1,14 @@
 import { ButtonLink, buttonCss } from "@/components/Button";
 import { PageLayout } from "@/components/PageLayout";
+import { createPageMetadata } from "@/constants/seo";
 import css from "./not-found.module.css";
+
+export const metadata = createPageMetadata({
+  title: "Сторінку не знайдено",
+  description: "Запитуваної сторінки немає. Поверніться на головну й оберіть тренажер НМТ або практику.",
+  path: "/",
+  noIndex: true,
+});
 
 export default function NotFound() {
   return (

@@ -5,6 +5,7 @@ type ResultsBarProps = {
   correct: number;
   total: number;
   averageLabel: string;
+  averageCaption?: string;
   accuracyPercentile: number;
   speedPercentile: number;
 };
@@ -14,6 +15,7 @@ export function ResultsBar({
   correct,
   total,
   averageLabel,
+  averageCaption = "Середній час відповіді",
   accuracyPercentile,
   speedPercentile,
 }: ResultsBarProps) {
@@ -26,7 +28,9 @@ export function ResultsBar({
           <p>
             Правильних відповідей: {correct} з {total}
           </p>
-          <p>Середній час відповіді: {averageLabel}</p>
+          <p>
+            {averageCaption}: {averageLabel}
+          </p>
         </>
       }
       right={

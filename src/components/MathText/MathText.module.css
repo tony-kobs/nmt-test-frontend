@@ -1,0 +1,20 @@
+.root {
+  display: inline;
+}
+
+.inline {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.block {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.block :global(.katex-display) {
+  margin: 0.4em 0;
+  overflow: visible;
+}

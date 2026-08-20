@@ -4,31 +4,43 @@ import type { Topic } from "@/types/practice";
 import { BackButton } from "@/components/BackButton";
 import { Button } from "@/components/Button";
 import { Select } from "@/components/Select";
+import { Timer } from "@/components/nmt/Timer";
+import { clsx } from "clsx";
 import css from "./TopicBar.module.css";
 
 type TopicBarProps = {
   topics: Topic[];
   topicId: string;
-  taskCount: number;
-  maxCount: number;
+  taskTotal: number;
   disabled: boolean;
+  inTest: boolean;
+  isUltimate: boolean;
+  endsAt: number;
+  compact?: boolean;
   onTopicChange: (id: string) => void;
-  onTaskCountChange: (count: number) => void;
-  onStart: () => void;
+  onStartFull: () => void;
+  onStartUltimate: () => void;
+  onAbort: () => void;
+  onExpire: () => void;
 };
 
 export function TopicBar({
   topics,
   topicId,
-  taskCount,
-  maxCount,
+  taskTotal,
   disabled,
+  inTest,
+  isUltimate,
+  endsAt,
+  compact,
   onTopicChange,
-  onTaskCountChange,
-  onStart,
+  onStartFull,
+  onStartUltimate,
+  onAbort,
+  onExpire,
 }: TopicBarProps) {
   return (
-    <header className={css.header}>
+    <header className={clsx(css.header, compact && css.compact)}>
       <div className={css.row}>
         <BackButton href="/" />
         <label className={css.label}>
@@ -47,25 +59,29 @@ export function TopicBar({
         </label>
       </div>
 
-      <div className={css.toolbar}>
-        <span>Пройти</span>
-        <Select
-          instanceId="practice-count"
-          value={String(taskCount)}
-          disabled={disabled}
-          onChange={(value) => onTaskCountChange(Number(value))}
-          aria-label="Кількість завдань"
-          narrow
-          options={Array.from({ length: maxCount }, (_, index) => ({
-            value: String(index + 1),
-            label: String(index + 1),
-          }))}
-        />
-        <span>завдань</span>
-        <Button variant="start" onClick={onStart} disabled={disabled}>
-          Старт
-        </Button>
-      </div>
+      {inTest ? (
+        <div className={css.sessionBar} aria-label="Режим тестування">
+          <div className={css.modeCluster}>
+            <span className={clsx(css.modeBadge, isUltimate ? css.modeUltimate : css.modeNormal)}>
+              {isUltimate ? "Ultimate" : "Звичайний режим"}
+            </span>
+            {isUltimate ? <Timer endsAt={endsAt} onExpire={onExpire} /> : null}
+          </div>
+          <Button className={css.abort} onClick={onAbort}>
+            Завершити тестування
+          </Button>
+        </div>
+      ) : (
+        <div className={css.toolbar}>
+          <span>{taskTotal} завдань</span>
+          <Button variant="start" onClick={onStartFull} disabled={disabled}>
+            Звичайний
+          </Button>
+          <Button onClick={onStartUltimate} disabled={disabled}>
+            Ultimate
+          </Button>
+        </div>
+      )}
     </header>
   );
 }

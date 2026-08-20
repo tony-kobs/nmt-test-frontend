@@ -74,6 +74,26 @@
   grid-column: 1 / -1;
 }
 
+.compact {
+  min-height: 44px;
+  padding: 8px 10px;
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  .compact {
+    min-height: 48px;
+    padding: 10px 12px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .compact {
+    min-height: 48px;
+    padding: 10px 12px;
+  }
+}
+
 .letter {
   margin-right: 8px;
   font-weight: 500;
