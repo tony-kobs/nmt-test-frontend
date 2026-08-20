@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { toggleTheme } from "@/redux/theme/slice";
+import { setTheme } from "@/redux/theme/slice";
 import css from "./AppBar.module.css";
 
 export function AppBar() {
@@ -47,15 +47,26 @@ export function AppBar() {
               </Link>
             </>
           )}
-          <button
-            type="button"
-            onClick={() => dispatch(toggleTheme())}
-            className={css.theme}
-            aria-label="Перемкнути тему"
-          >
-            {theme === "dark" ? <MdLightMode size={18} /> : <MdDarkMode size={18} />}
-            <span className={css.themeLabel}>{theme === "dark" ? "Світла" : "Темна"}</span>
-          </button>
+          <div className={css.themeSwitch} role="group" aria-label="Тема оформлення">
+            <button
+              type="button"
+              className={clsx(css.themeOpt, theme === "light" && css.themeOptActive)}
+              aria-label="Світла тема"
+              aria-pressed={theme === "light"}
+              onClick={() => dispatch(setTheme("light"))}
+            >
+              <MdLightMode size={18} aria-hidden={true} />
+            </button>
+            <button
+              type="button"
+              className={clsx(css.themeOpt, theme === "dark" && css.themeOptActive)}
+              aria-label="Темна тема"
+              aria-pressed={theme === "dark"}
+              onClick={() => dispatch(setTheme("dark"))}
+            >
+              <MdDarkMode size={18} aria-hidden={true} />
+            </button>
+          </div>
         </div>
       </div>
     </header>

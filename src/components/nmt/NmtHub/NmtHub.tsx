@@ -25,11 +25,12 @@ export function NmtHub() {
               value={hub.mode}
               onChange={(value) => hub.setMode(value as HubMode)}
               wide
+              disabledValues={hub.hasFullTest ? [] : ["weak"]}
               options={HUB_MODES.map((item) => ({ value: item.id, label: item.title }))}
             />
           </label>
           <div className={css.toolbar}>
-            <Button variant="start" onClick={hub.start}>
+            <Button variant="start" onClick={hub.start} disabled={hub.mode === "weak" && !hub.hasFullTest}>
               Старт
             </Button>
           </div>
@@ -39,7 +40,10 @@ export function NmtHub() {
 
       {hub.session ? (
         <div className={css.resume}>
-          <span>Є незавершений тест.</span>
+          <span>
+            Є незавершений тест
+            {hub.session.variantTitle ? `: ${hub.session.variantTitle}` : ""}.
+          </span>
           <Button variant="start" onClick={hub.continueTest}>
             Продовжити
           </Button>
@@ -53,15 +57,45 @@ export function NmtHub() {
         <h1 className={css.title}>НМТ 2026</h1>
         <p className={css.lead}>{hub.selected.description}</p>
 
+        {hub.mode === "full" ? (
+          <label className={css.variantBox}>
+            <span className={css.variantLabel}>Варіант завдань</span>
+            <Select
+              instanceId="nmt-variant"
+              value={hub.variantId}
+              onChange={hub.setVariantId}
+              wide
+              options={hub.variantOptions}
+            />
+            <p className={css.lockHint}>
+              Пройдено {hub.completedCount} з {hub.variantTotal}. У тесті зверху буде назва варіанта.
+            </p>
+          </label>
+        ) : null}
+
         <div className={css.modes}>
-          {HUB_MODES.map((item) => (
-            <Button key={item.id} variant="cell" selected={hub.mode === item.id} onClick={() => hub.launch(item.id)}>
-              {item.title}
-            </Button>
-          ))}
+          {HUB_MODES.map((item) => {
+            const locked = item.id === "weak" && !hub.hasFullTest;
+            return (
+              <Button
+                key={item.id}
+                variant="cell"
+                selected={hub.mode === item.id}
+                disabled={locked}
+                title={locked ? "Спочатку пройди повний НМТ" : undefined}
+                onClick={() => hub.launch(item.id)}
+              >
+                {item.title}
+              </Button>
+            );
+          })}
         </div>
+        {!hub.hasFullTest ? (
+          <p className={css.lockHint}>«Слабкі теми» стануть активними після першого повного НМТ.</p>
+        ) : null}
 
         <StatsGrid
+          className={css.stats}
           left={
             <>
               <p>
@@ -75,9 +109,11 @@ export function NmtHub() {
             <>
               <p>{hub.last?.rating ? `Рейтинг: ${hub.last.rating} з 200` : "Рейтинг 100–200 після повного НМТ"}</p>
               <p>
-                {hub.weak[0]
+                {hub.hasFullTest && hub.weak[0]
                   ? `Слабка тема: ${hub.weak[0].label} (${hub.weak[0].percent}%)`
-                  : "Слабкі теми з’являться після спроб"}
+                  : hub.hasFullTest
+                    ? "Слабкі теми з’являться після помилок у тесті"
+                    : "Слабкі теми — після повного НМТ"}
               </p>
             </>
           }

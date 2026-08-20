@@ -19,6 +19,15 @@ export interface ActiveSession {
   category?: CategoryId;
   difficulty?: Difficulty | "any";
   allowFormulas: boolean;
+  variantId?: string;
+  variantTitle?: string;
+}
+
+export interface NmtVariant {
+  id: string;
+  number: number;
+  title: string;
+  questions: Question[];
 }
 
 export interface PracticeOptions {

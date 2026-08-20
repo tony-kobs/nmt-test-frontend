@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { nanoid } from "nanoid";
 import { questionsBank } from "@/data/questions";
 import { evaluateTest } from "@/helpers/scoring";
-import { createSession, generateFullTest, generatePracticeTest, generateRandomTest } from "@/helpers/testGenerator";
+import { createFullSession, createSession, generatePracticeTest, generateRandomTest, questionById } from "@/helpers/testGenerator";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addResult, clearCurrentResult, mergeTopicStats, setCurrentResult } from "@/redux/results/slice";
 import { clearSession, setAnswer, setCurrentIndex, setSession, toggleFlag } from "@/redux/session/slice";
@@ -35,12 +35,16 @@ export function useNmtTest() {
     (current: ActiveSession) => {
       if (finishing.current) return;
       finishing.current = true;
-      const evaluated = evaluateTest(current.questions, current.answers);
+      const evaluated = evaluateTest(current.questions, current.answers, {
+        rating: current.mode === "full",
+      });
       const nextResult: TestResult = {
         id: nanoid(),
         date: new Date().toISOString(),
         mode: current.mode,
         durationMs: Date.now() - current.startedAt,
+        variantId: current.variantId ?? null,
+        variantTitle: current.variantTitle ?? null,
         ...evaluated,
       };
       dispatch(addResult(nextResult));
@@ -55,7 +59,7 @@ export function useNmtTest() {
   const restartSameMode = useCallback(
     (current: TestResult) => {
       if (current.mode === "full") {
-        beginSession(createSession("full", generateFullTest()));
+        beginSession(createFullSession(current.variantId ?? undefined));
         return;
       }
       if (current.mode === "random") {
@@ -75,7 +79,7 @@ export function useNmtTest() {
 
   const retryQuestion = useCallback(
     (questionId: string) => {
-      const question = questionsBank.find((item) => item.id === questionId);
+      const question = questionById(questionId) ?? questionsBank.find((item) => item.id === questionId);
       if (!question) return;
       beginSession(createSession("practice", [question], { endsAt: null }));
     },
