@@ -29,8 +29,12 @@ export function MistakeReview({
             <p>
               <MathText text={item.question} />
             </p>
-            <p className={css.yours}>Твоя відповідь: {item.userLabel}</p>
-            <p className={css.correct}>Правильна відповідь: {item.correctLabel}</p>
+            <p className={css.yours}>
+              Твоя відповідь: <MathText text={item.userLabel} />
+            </p>
+            <p className={css.correct}>
+              Правильна відповідь: <MathText text={item.correctLabel} />
+            </p>
             <p className={css.note}>
               Пояснення: <MathText text={item.explanation} />
             </p>
