@@ -50,7 +50,12 @@ export default function Footer() {
 
       {helpType !== null && (
         <div className={css.modalBackdrop} onClick={() => setHelpType(null)}>
-          <div className={css.modal} onClick={() => setHelpType(null)}>
+          <div
+            className={css.modal}
+            role="dialog"
+            aria-modal="true"
+            onClick={(event) => event.stopPropagation()}
+          >
             {helpType === "how-it-works" && (
               <>
                 <h2>Як це працює?</h2>
@@ -70,8 +75,8 @@ export default function Footer() {
                 <p>
                   У повному тесті НМТ — 22 завдання та максимум 32 тестові бали.
                   15 завдань мають одну правильну відповідь і дають по 1 балу. 3
-                  завдання на відповідність — до 4 балів кожне. Ще 4 завдання з
-                  короткою відповіддю — по 2 бали.
+                  завдання на відповідність — до 3 балів кожне (1 за пару). Ще 4
+                  завдання з короткою відповіддю — по 2 бали.
                 </p>
               </>
             )}

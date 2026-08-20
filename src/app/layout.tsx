@@ -19,9 +19,6 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "НМТ математика — підготовка",
-  description:
-    "Тренажер НМТ-2026 з математики та інтерактивна практика за темами.",
   metadataBase: new URL(getSiteUrl()),
   title: {
     default: `${SITE_NAME} — ${SITE_TAGLINE}`,
