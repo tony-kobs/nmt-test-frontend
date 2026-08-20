@@ -1,4 +1,10 @@
-export type AnswerKind = "choice" | "input";
+export type AnswerKind = "choice" | "input" | "matching";
+export type PracticeMode = "full" | "ultimate" | "mistakes";
+
+export interface MatchingItem {
+  id: string;
+  text: string;
+}
 
 export interface Task {
   id: string;
@@ -6,8 +12,13 @@ export interface Task {
   prompt: string;
   kind: AnswerKind;
   options?: string[];
+  matchingLeft?: MatchingItem[];
+  matchingRight?: MatchingItem[];
+  matchingCorrect?: Record<string, string>;
   correct: string[];
   correctLabel: string;
+  explanation: string;
+  formula?: string;
 }
 
 export interface Topic {

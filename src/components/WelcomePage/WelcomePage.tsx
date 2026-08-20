@@ -4,14 +4,15 @@ import css from "./WelcomePage.module.css";
 
 export function WelcomePage() {
   return (
-    <PageLayout>
+    <PageLayout centered>
       <main className={css.main}>
-        <h1 className={css.title}>
-          Готуйся до НМТ з математики так, як здаватимеш.
-        </h1>
-        <p className={css.lead}>
-          Привіт. Це тренажер і практика до НМТ. Пройди тест або підтягни одну тему.
-        </p>
+        <div className={css.hero}>
+          <h1 className={css.title}>Готуйся до НМТ з математики разом із нашою платформою</h1>
+          <p className={css.lead}>
+            Спробуй себе в тестуванні, наближеному до НМТ-2026: 10 варіантів, оцінювання УЦОЯО, розбір помилок і
+            практика за темами.
+          </p>
+        </div>
 
         <div className={css.cards}>
           <article className={css.card}>
@@ -25,8 +26,7 @@ export function WelcomePage() {
           <article className={css.card}>
             <h2 className={css.cardTitle}>Практика</h2>
             <p className={css.cardText}>
-              Короткі добірки за темою. Щоб підтягнути слабке місце, а не
-              проходити все підряд.
+              Ті самі теми, що в НМТ. Звичайний режим з розбором або Ultimate: до 20 завдань за 20 хвилин.
             </p>
             <ButtonLink href="/practice" variant="ink">
               До практики

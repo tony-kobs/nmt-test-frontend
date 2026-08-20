@@ -1,4 +1,5 @@
 import { FULL_TEST_DURATION_MS } from "@/constants";
+import { findQuestion, getVariant, nmtVariants, pickFullVariant, VARIANT_RANDOM } from "@/data/nmtVariants";
 import { questionsBank } from "@/data/questions";
 import { shuffle } from "@/helpers/shuffle";
 import type { CategoryId, Difficulty, Question } from "@/types/question";
@@ -16,20 +17,15 @@ function filterPracticePool(options: PracticeOptions): Question[] {
   });
 }
 
-export function generateFullTest(): Question[] {
-  const singles = uniqueTake(
-    questionsBank.filter((item) => item.type === "single"),
-    15,
-  );
-  const matching = uniqueTake(
-    questionsBank.filter((item) => item.type === "matching"),
-    3,
-  );
-  const shorts = uniqueTake(
-    questionsBank.filter((item) => item.type === "short"),
-    4,
-  );
-  return [...singles, ...matching, ...shorts];
+export function createFullSession(variantChoice: string = VARIANT_RANDOM, completedIds: string[] = []) {
+  const variant =
+    variantChoice && variantChoice !== VARIANT_RANDOM
+      ? (getVariant(variantChoice) ?? pickFullVariant(completedIds))
+      : pickFullVariant(completedIds);
+  return createSession("full", variant.questions, {
+    variantId: variant.id,
+    variantTitle: variant.title,
+  });
 }
 
 export function generatePracticeTest(options: PracticeOptions): Question[] {
@@ -44,7 +40,9 @@ export function generateRandomTest(count: number): Question[] {
 export function createSession(
   mode: TestMode,
   questions: Question[],
-  extras?: Partial<Pick<ActiveSession, "category" | "difficulty" | "allowFormulas" | "endsAt">>,
+  extras?: Partial<
+    Pick<ActiveSession, "category" | "difficulty" | "allowFormulas" | "endsAt" | "variantId" | "variantTitle">
+  >,
 ): ActiveSession {
   const timed = mode === "full";
   const prepared = questions.map((question) =>
@@ -63,9 +61,17 @@ export function createSession(
     category: extras?.category,
     difficulty: extras?.difficulty,
     allowFormulas: extras?.allowFormulas ?? true,
+    variantId: extras?.variantId,
+    variantTitle: extras?.variantTitle,
   };
 }
 
 export function remainingPoolSize(category: CategoryId | "all", difficulty: Difficulty | "any") {
   return filterPracticePool({ category, difficulty, count: 10 }).length;
 }
+
+export function questionById(questionId: string): Question | undefined {
+  return findQuestion(questionId);
+}
+
+export { nmtVariants, VARIANT_RANDOM };

@@ -106,8 +106,7 @@
   transition: color var(--t) var(--ease);
 }
 
-.link:hover,
-.theme:hover {
+.link:hover {
   color: var(--link-hover);
 }
 
@@ -118,24 +117,52 @@
   text-underline-offset: 4px;
 }
 
-.theme {
-  display: flex;
+.themeSwitch {
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-muted);
+  gap: 2px;
+}
+
+.themeOpt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 30px;
   padding: 0;
-  border: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
   background: transparent;
-  color: var(--link);
+  color: var(--muted);
   cursor: pointer;
-  transition: color var(--t) var(--ease);
+  transition:
+    background-color var(--t) var(--ease),
+    color var(--t) var(--ease),
+    border-color var(--t) var(--ease);
 }
 
-.themeLabel {
-  display: none;
+.themeOpt:hover {
+  color: var(--ink);
+  background: var(--surface);
 }
 
-@media (min-width: 768px) {
-  .themeLabel {
-    display: inline;
-  }
+.themeOpt:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 1px;
+}
+
+.themeOptActive {
+  border-color: var(--green);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.themeOptActive:hover {
+  background: var(--surface);
+  color: var(--ink);
 }

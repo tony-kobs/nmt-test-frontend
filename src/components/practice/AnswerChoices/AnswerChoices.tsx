@@ -1,6 +1,7 @@
 import { ChoiceButton, type ChoiceState } from "@/components/ChoiceButton";
 import { MathText } from "@/components/MathText";
 import { isAnswerCorrect } from "@/helpers/checkAnswer";
+import { clsx } from "clsx";
 import css from "./AnswerChoices.module.css";
 
 type AnswerChoicesProps = {
@@ -9,6 +10,7 @@ type AnswerChoicesProps = {
   correct: string[];
   revealed: boolean;
   disabled: boolean;
+  compact?: boolean;
   onSelect: (option: string) => void;
 };
 
@@ -26,14 +28,16 @@ export function AnswerChoices({
   correct,
   revealed,
   disabled,
+  compact,
   onSelect,
 }: AnswerChoicesProps) {
   return (
-    <div className={css.grid}>
+    <div className={clsx(css.grid, compact && css.compact)}>
       {options.map((option, index) => (
         <ChoiceButton
           key={`${option}-${index}`}
           disabled={disabled}
+          compact={compact}
           state={optionState(option, selected, correct, revealed)}
           onClick={() => onSelect(option)}
         >

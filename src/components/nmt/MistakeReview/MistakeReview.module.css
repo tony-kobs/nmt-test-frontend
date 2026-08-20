@@ -54,14 +54,44 @@
   color: var(--red);
 }
 
-.yours {
+.points {
   margin: 12px 0 0;
-  color: var(--red);
+  font-weight: 600;
 }
 
-.correct {
-  margin: 0;
+.answer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  margin: 12px 0 0;
+}
+
+.answerLead {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.answerValue {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 18px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.answerBad {
+  color: var(--red);
+  border-color: var(--red-border);
+}
+
+.answerOk {
   color: var(--green);
+  border-color: var(--green);
 }
 
 .note {

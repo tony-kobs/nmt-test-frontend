@@ -2,7 +2,15 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   max-width: 720px;
+  margin: 0 auto;
+}
+
+.hero {
+  width: 100%;
+  text-align: center;
 }
 
 .title {
@@ -11,13 +19,15 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 .lead {
-  max-width: 40em;
-  margin: 16px 0 0;
+  max-width: 36em;
+  margin: 16px auto 0;
   font-size: var(--lead);
   line-height: 1.7;
+  text-wrap: pretty;
 }
 
 @media (min-width: 768px) {
@@ -46,6 +56,7 @@
   margin-top: 28px;
   grid-template-columns: 1fr;
   gap: 12px;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -59,12 +70,13 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 20px 16px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
+  text-align: center;
   transition:
     border-color var(--t) var(--ease),
     background-color var(--t) var(--ease),
