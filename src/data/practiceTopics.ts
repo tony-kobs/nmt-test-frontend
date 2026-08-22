@@ -68,6 +68,8 @@ const ORDER: CategoryId[] = [
   "planimetry",
   "stereometry",
   "probability",
+  "vectors",
+  "systems",
 ];
 
 export const topics: Topic[] = ORDER.map((category, index) => ({
