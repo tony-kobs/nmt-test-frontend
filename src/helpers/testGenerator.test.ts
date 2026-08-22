@@ -15,8 +15,9 @@ import {
 describe("nmtVariants bank", () => {
   it("has 10×22 tasks and unique ids", () => {
     expect(nmtVariants).toHaveLength(10);
-    expect(questionsBank).toHaveLength(220);
-    expect(new Set(questionsBank.map((q) => q.id)).size).toBe(220);
+    // 10 variants × 22 questions = 220 base + additional questions for vectors/systems
+    expect(questionsBank.length).toBeGreaterThanOrEqual(220);
+    expect(new Set(questionsBank.map((q) => q.id)).size).toBe(questionsBank.length);
   });
 
   it("keeps official structure and perfect score 32→200", () => {

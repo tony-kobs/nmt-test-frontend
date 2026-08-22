@@ -7,7 +7,9 @@ export type CategoryId =
   | "functions"
   | "planimetry"
   | "stereometry"
-  | "probability";
+  | "probability"
+  | "vectors"
+  | "systems";
 
 export interface MatchingItem {
   id: string;
@@ -38,6 +40,8 @@ export const CATEGORY_LABELS: Record<CategoryId, string> = {
   planimetry: "Планіметрія",
   stereometry: "Стереометрія",
   probability: "Комбінаторика, ймовірність і статистика",
+  vectors: "Вектори",
+  systems: "Системи рівнянь",
 };
 
 export const OPTION_LETTERS = ["А", "Б", "В", "Г", "Д"] as const;
