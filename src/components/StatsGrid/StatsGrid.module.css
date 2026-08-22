@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 32px;
   gap: 16px;
   font-size: 16px;
   text-align: left;
@@ -9,16 +9,16 @@
 
 @media (min-width: 768px) {
   .grid {
-    margin-top: 64px;
+    margin-top: 40px;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: 24px;
     font-size: 17px;
   }
 }
 
 @media (min-width: 1280px) {
   .grid {
-    gap: 64px;
+    gap: 32px;
   }
 }
 

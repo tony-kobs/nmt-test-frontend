@@ -34,6 +34,8 @@ export interface TestResult {
   durationMs: number;
   topicStats: TopicStat[];
   review: ReviewItem[];
+  variantId?: string | null;
+  variantTitle?: string | null;
 }
 
 export interface WeakTopic {

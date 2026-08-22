@@ -14,6 +14,7 @@ type SelectProps = {
   wide?: boolean;
   narrow?: boolean;
   disabled?: boolean;
+  disabledValues?: string[];
   instanceId: string;
   placeholder?: string;
   "aria-label"?: string;
@@ -26,6 +27,7 @@ export function Select({
   wide,
   narrow,
   disabled,
+  disabledValues,
   instanceId,
   placeholder = "Оберіть…",
   "aria-label": ariaLabel,
@@ -47,6 +49,7 @@ export function Select({
       value={selected}
       onChange={(option: SingleValue<SelectOption>) => onChange(option?.value ?? "")}
       isDisabled={disabled}
+      isOptionDisabled={(option) => Boolean(disabledValues?.includes(option.value))}
       isSearchable={false}
       isClearable={false}
       placeholder={placeholder}
@@ -102,16 +105,17 @@ export function Select({
           ...base,
           padding: "10px 12px",
           fontSize: 16,
-          cursor: "pointer",
+          cursor: state.isDisabled ? "not-allowed" : "pointer",
+          opacity: state.isDisabled ? 0.45 : 1,
           backgroundColor: state.isSelected
             ? "var(--green-soft)"
-            : state.isFocused
+            : state.isFocused && !state.isDisabled
               ? "var(--green-hover)"
               : "var(--surface)",
           color: "var(--ink)",
           fontWeight: state.isSelected ? 500 : 400,
           ":active": {
-            backgroundColor: "var(--green-soft)",
+            backgroundColor: state.isDisabled ? "var(--surface)" : "var(--green-soft)",
           },
         }),
         singleValue: (base) => ({ ...base, color: "var(--ink)", margin: 0 }),

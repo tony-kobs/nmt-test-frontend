@@ -23,12 +23,16 @@ export function ResultSummary({
   return (
     <PageLayout>
       <header className={css.top}>
-        <BackButton href="/" />
-        <span>{MODE_LABEL[result.mode]}</span>
+        <BackButton href="/nmt" />
+        <span>
+          {MODE_LABEL[result.mode]}
+          {result.variantTitle ? ` · ${result.variantTitle}` : ""}
+        </span>
       </header>
 
       <main className={css.main}>
         <h1 className={css.title}>Твій результат</h1>
+        {result.variantTitle ? <p className={css.score}>{result.variantTitle}</p> : null}
         <p className={css.score}>
           {result.testScore} з {result.maxScore} тестових балів
         </p>
@@ -50,8 +54,8 @@ export function ResultSummary({
               <p>
                 {result.rating
                   ? `Рейтинг: ${result.rating} з 200`
-                  : result.maxScore === 32
-                    ? "Поріг 5 балів не подолано"
+                  : result.mode === "full"
+                    ? "Поріг 5 тестових балів не подолано"
                     : "Рейтинг лише для повного НМТ"}
               </p>
               <p>

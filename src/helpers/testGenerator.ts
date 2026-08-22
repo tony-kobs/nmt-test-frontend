@@ -1,4 +1,5 @@
 import { FULL_TEST_DURATION_MS } from "@/constants";
+import { findQuestion, getVariant, nmtVariants, pickFullVariant, VARIANT_RANDOM } from "@/data/nmtVariants";
 import { questionsBank } from "@/data/questions";
 import { shuffle } from "@/helpers/shuffle";
 import type { CategoryId, Difficulty, Question } from "@/types/question";
@@ -8,35 +9,28 @@ function uniqueTake(pool: Question[], count: number): Question[] {
   return shuffle(pool).slice(0, Math.min(count, pool.length));
 }
 
-export function generateFullTest(): Question[] {
-  const singles = uniqueTake(
-    questionsBank.filter((item) => item.type === "single"),
-    15,
-  );
-  const matching = uniqueTake(
-    questionsBank.filter((item) => item.type === "matching"),
-    3,
-  );
-  const shorts = uniqueTake(
-    questionsBank.filter((item) => item.type === "short"),
-    4,
-  );
-  return [...singles, ...matching, ...shorts];
-}
-
-export function generatePracticeTest(options: PracticeOptions): Question[] {
-  const pool = questionsBank.filter((item) => {
+function filterPracticePool(options: PracticeOptions): Question[] {
+  return questionsBank.filter((item) => {
     const categoryOk = options.category === "all" || item.category === options.category;
     const difficultyOk = options.difficulty === "any" || item.difficulty === options.difficulty;
     return categoryOk && difficultyOk;
   });
-  const picked = uniqueTake(pool, options.count);
-  if (picked.length >= options.count) return picked;
-  const extra = uniqueTake(
-    questionsBank.filter((item) => !picked.some((question) => question.id === item.id)),
-    options.count - picked.length,
-  );
-  return [...picked, ...extra];
+}
+
+export function createFullSession(variantChoice: string = VARIANT_RANDOM, completedIds: string[] = []) {
+  const variant =
+    variantChoice && variantChoice !== VARIANT_RANDOM
+      ? (getVariant(variantChoice) ?? pickFullVariant(completedIds))
+      : pickFullVariant(completedIds);
+  return createSession("full", variant.questions, {
+    variantId: variant.id,
+    variantTitle: variant.title,
+  });
+}
+
+export function generatePracticeTest(options: PracticeOptions): Question[] {
+  const pool = filterPracticePool(options);
+  return uniqueTake(pool, Math.min(options.count, pool.length));
 }
 
 export function generateRandomTest(count: number): Question[] {
@@ -46,7 +40,9 @@ export function generateRandomTest(count: number): Question[] {
 export function createSession(
   mode: TestMode,
   questions: Question[],
-  extras?: Partial<Pick<ActiveSession, "category" | "difficulty" | "allowFormulas" | "endsAt">>,
+  extras?: Partial<
+    Pick<ActiveSession, "category" | "difficulty" | "allowFormulas" | "endsAt" | "variantId" | "variantTitle">
+  >,
 ): ActiveSession {
   const timed = mode === "full";
   const prepared = questions.map((question) =>
@@ -65,13 +61,17 @@ export function createSession(
     category: extras?.category,
     difficulty: extras?.difficulty,
     allowFormulas: extras?.allowFormulas ?? true,
+    variantId: extras?.variantId,
+    variantTitle: extras?.variantTitle,
   };
 }
 
 export function remainingPoolSize(category: CategoryId | "all", difficulty: Difficulty | "any") {
-  return questionsBank.filter((item) => {
-    const categoryOk = category === "all" || item.category === category;
-    const difficultyOk = difficulty === "any" || item.difficulty === difficulty;
-    return categoryOk && difficultyOk;
-  }).length;
+  return filterPracticePool({ category, difficulty, count: 10 }).length;
 }
+
+export function questionById(questionId: string): Question | undefined {
+  return findQuestion(questionId);
+}
+
+export { nmtVariants, VARIANT_RANDOM };

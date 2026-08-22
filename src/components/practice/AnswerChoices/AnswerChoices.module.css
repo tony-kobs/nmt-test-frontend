@@ -20,3 +20,14 @@
     gap: 20px;
   }
 }
+
+.compact {
+  max-width: 100%;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .compact {
+    gap: 10px;
+  }
+}

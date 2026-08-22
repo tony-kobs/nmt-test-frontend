@@ -157,6 +157,11 @@ body {
   color: inherit;
 }
 
+.katex-display,
+.katex-display > .katex {
+  overflow: visible;
+}
+
 ::selection {
   background: var(--green-soft);
   color: var(--ink);

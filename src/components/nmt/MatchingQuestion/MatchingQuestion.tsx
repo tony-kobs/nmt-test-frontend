@@ -12,11 +12,15 @@ export function MatchingQuestion({
   right,
   value,
   onChange,
+  disabled = false,
+  instancePrefix = "match",
 }: {
   left: MatchingItem[];
   right: MatchingItem[];
   value: Record<string, string>;
   onChange: (value: Record<string, string>) => void;
+  disabled?: boolean;
+  instancePrefix?: string;
 }) {
   return (
     <div className={css.wrap}>
@@ -28,13 +32,17 @@ export function MatchingQuestion({
               <MathText text={item.text} />
             </span>
             <Select
-              instanceId={`match-${item.id}`}
+              instanceId={`${instancePrefix}-${item.id}`}
               value={value[item.id] || EMPTY_MATCH}
               onChange={(chosen) =>
                 onChange({ ...value, [item.id]: chosen === EMPTY_MATCH ? "" : chosen })
               }
               narrow
+              disabled={disabled}
               placeholder="—"
+              disabledValues={right
+                .map((choice) => choice.id)
+                .filter((id) => id !== value[item.id] && Object.values(value).includes(id))}
               options={[
                 { value: EMPTY_MATCH, label: "—" },
                 ...right.map((choice) => ({ value: choice.id, label: choice.id })),

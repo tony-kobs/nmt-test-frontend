@@ -23,13 +23,13 @@ export function TestShell() {
     return (
       <PageLayout>
         <header className={css.row}>
-          <BackButton href="/" />
+          <BackButton href="/nmt" />
           <span>НМТ 2026</span>
         </header>
         <main className={css.main}>
           <h1 className={css.title}>Тест не знайдено</h1>
           <p className={css.lead}>Немає активної спроби. Поверніться на тренажер і натисніть «Старт».</p>
-          <ButtonLink href="/" className={buttonCss.offset}>
+          <ButtonLink href="/nmt" className={buttonCss.offset}>
             На тренажер
           </ButtonLink>
         </main>
@@ -37,7 +37,7 @@ export function TestShell() {
     );
   }
 
-  if (test.result) {
+  if (!test.session && test.result) {
     return (
       <ResultSummary
         result={test.result}
@@ -66,9 +66,12 @@ export function TestShell() {
     <PageLayout>
       <header className={css.top}>
         <div className={css.row}>
-          <BackButton href="/" />
+          <BackButton href="/nmt" />
           <div className={css.titleRow}>
-            <span className={css.mode}>{title}</span>
+            <span className={css.mode}>
+              {title}
+              {session.variantTitle ? ` · ${session.variantTitle}` : ""}
+            </span>
             {session.endsAt ? <Timer endsAt={session.endsAt} onExpire={test.onExpire} /> : <span />}
           </div>
         </div>
@@ -86,10 +89,10 @@ export function TestShell() {
       <main className={css.main}>
         <p className={css.kind}>
           {question.type === "matching"
-            ? "Встановлення відповідності"
+            ? "Відповідність: 1 бал за кожну правильну пару (0–3)"
             : question.type === "short"
-              ? "Коротка відповідь"
-              : "Одна правильна відповідь"}
+              ? "Коротка відповідь: 0 або 2 бали"
+              : "Вибір однієї відповіді: 0 або 1 бал"}
         </p>
         <h1 className={css.title}>Завдання {session.currentIndex + 1}</h1>
         <p className={css.prompt}>
@@ -110,6 +113,7 @@ export function TestShell() {
               right={question.matchingRight}
               value={answer?.type === "matching" ? answer.value : {}}
               onChange={(value) => test.saveAnswer(question.id, { type: "matching", value })}
+              instancePrefix={`nmt-${question.id}`}
             />
           ) : null}
           {question.type === "short" ? (
