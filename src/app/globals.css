@@ -66,6 +66,8 @@ a {
   --shadow: rgb(0 0 0 / 8%);
   --mistake-bg: #fff8f7;
   --white: #ffffff;
+  --icon-rating: #6d28d9;
+  --icon-weak-topic: #b45309;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --t: 0.22s;
   --radius: 12px;
@@ -132,6 +134,8 @@ html.dark {
   --shadow: rgb(0 0 0 / 40%);
   --mistake-bg: #2c1b1b;
   --white: #1c232e;
+  --icon-rating: #b79cf9;
+  --icon-weak-topic: #f5a742;
 }
 
 body {

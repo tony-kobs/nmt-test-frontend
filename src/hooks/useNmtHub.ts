@@ -4,6 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { HUB_MODES } from "@/constants";
 import { nmtVariants, VARIANT_RANDOM } from "@/data/nmtVariants";
+import { clampPercent, getScoreTrend, safePercent } from "@/helpers/hubStats";
 import { persistAndGo } from "@/helpers/navigation";
 import { createFullSession, createSession, generateRandomTest } from "@/helpers/testGenerator";
 import { getWeakTopics } from "@/helpers/weakTopics";
@@ -29,6 +30,10 @@ export function useNmtHub() {
   ];
   const completedCount = completedIds.length;
   const weakTopic = weak[0];
+  const correctPercent = last ? safePercent(last.correct, last.correct + last.incorrect + last.skipped) : null;
+  const scorePercent = last ? safePercent(last.testScore, last.maxScore) : null;
+  const scoreTrend = getScoreTrend(history);
+  const weakTopicErrorPercent = weakTopic ? clampPercent(100 - weakTopic.percent) : null;
 
   function lastScoreFor(id: string) {
     return history.find((item) => item.mode === "full" && item.variantId === id);
@@ -116,6 +121,11 @@ export function useNmtHub() {
     error,
     weak,
     last,
+    correctPercent,
+    scorePercent,
+    scoreTrend,
+    weakTopic,
+    weakTopicErrorPercent,
     hasFullTest,
     launch,
     start: () => launch(mode),
