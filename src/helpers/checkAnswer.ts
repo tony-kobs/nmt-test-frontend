@@ -40,10 +40,11 @@ function parseNumber(value: string): number | null {
 }
 
 function splitList(value: string): string[] {
+  // Не ділимо по `/` — це дріб (1/2), а не роздільник списку.
   return value
     .trim()
     .toLowerCase()
-    .split(/\s*(?:;|\||(?:^|\s)(?:і|та)(?:\s|$)|\/)\s*/)
+    .split(/\s*(?:;|\||(?:^|\s)(?:і|та)(?:\s|$))\s*/)
     .map((part) => part.trim())
     .filter(Boolean)
     .sort();

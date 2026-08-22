@@ -1,0 +1,94 @@
+.ok {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 17px;
+  color: var(--green);
+}
+
+.section {
+  width: 100%;
+  margin-top: 28px;
+  text-align: left;
+}
+
+.heading {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  border-left: 8px solid var(--red);
+  background: var(--mistake-bg);
+  padding: 16px;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 20px;
+    font-size: 17px;
+  }
+}
+
+.badge {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.title {
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0 0;
+}
+
+.answerLead {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.answerValue {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 18px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.answerBad {
+  color: var(--red);
+  border-color: var(--red-border);
+}
+
+.answerOk {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.note {
+  margin: 8px 0 0;
+}

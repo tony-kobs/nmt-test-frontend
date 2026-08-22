@@ -6,11 +6,13 @@ import type { TestResult, TopicStat } from "@/types/result";
 type ResultsState = {
   history: TestResult[];
   topicStats: Record<string, { correct: number; total: number }>;
+  current: TestResult | null;
 };
 
 const initialState: ResultsState = {
   history: [],
   topicStats: {},
+  current: null,
 };
 
 const resultsSlice = createSlice({
@@ -29,6 +31,12 @@ const resultsSlice = createSlice({
         };
       }
     },
+    setCurrentResult(state, action: PayloadAction<TestResult | null>) {
+      state.current = action.payload;
+    },
+    clearCurrentResult(state) {
+      state.current = null;
+    },
     hydrateResults(
       state,
       action: PayloadAction<{
@@ -42,5 +50,6 @@ const resultsSlice = createSlice({
   },
 });
 
-export const { addResult, mergeTopicStats, hydrateResults } = resultsSlice.actions;
+export const { addResult, mergeTopicStats, setCurrentResult, clearCurrentResult, hydrateResults } =
+  resultsSlice.actions;
 export const resultsReducer = resultsSlice.reducer;

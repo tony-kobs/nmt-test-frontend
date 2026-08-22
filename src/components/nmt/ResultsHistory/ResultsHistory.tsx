@@ -15,7 +15,7 @@ export function ResultsHistory() {
   return (
     <PageLayout>
       <header className={css.top}>
-        <BackButton href="/" />
+        <BackButton href="/nmt" />
         <span>Мої результати</span>
       </header>
 
@@ -44,7 +44,8 @@ export function ResultsHistory() {
             <div className={css.list}>
               {history.map((item) => (
                 <p key={item.id} className={css.item}>
-                  {new Date(item.date).toLocaleDateString("uk-UA")} · {MODE_LABEL[item.mode]} · {item.testScore}/
+                  {new Date(item.date).toLocaleDateString("uk-UA")} · {MODE_LABEL[item.mode]}
+                  {item.variantTitle ? ` · ${item.variantTitle}` : ""} · {item.testScore}/
                   {item.maxScore} · {formatDuration(item.durationMs)}
                 </p>
               ))}
