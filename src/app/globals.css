@@ -77,6 +77,10 @@ a {
   --title: 24px;
   --lead: 16px;
   --main-pt: 36px;
+  --accent-algebra: #6d28d9;
+  --accent-algebra-soft: #f3ecfd;
+  --accent-geometry: #0f766e;
+  --accent-geometry-soft: #e3f7f4;
 }
 
 @media (min-width: 768px) {
@@ -136,6 +140,10 @@ html.dark {
   --white: #1c232e;
   --icon-rating: #b79cf9;
   --icon-weak-topic: #f5a742;
+  --accent-algebra: #c4b5fd;
+  --accent-algebra-soft: #241a38;
+  --accent-geometry: #5eead4;
+  --accent-geometry-soft: #0f2e2b;
 }
 
 body {
