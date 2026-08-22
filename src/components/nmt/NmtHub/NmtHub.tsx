@@ -2,9 +2,9 @@
 
 import { BackButton } from "@/components/BackButton";
 import { Button } from "@/components/Button";
+import { HubStats } from "@/components/nmt/HubStats";
 import { PageLayout } from "@/components/PageLayout";
 import { Select } from "@/components/Select";
-import { StatsGrid } from "@/components/StatsGrid";
 import { HUB_MODES } from "@/constants";
 import { useNmtHub } from "@/hooks/useNmtHub";
 import type { HubMode } from "@/types/test";
@@ -94,29 +94,15 @@ export function NmtHub() {
           <p className={css.lockHint}>«Слабкі теми» стануть активними після першого повного НМТ.</p>
         ) : null}
 
-        <StatsGrid
+        <HubStats
           className={css.stats}
-          left={
-            <>
-              <p>
-                Правильних відповідей:{" "}
-                {hub.last ? `${hub.last.correct} з ${hub.last.correct + hub.last.incorrect + hub.last.skipped}` : "—"}
-              </p>
-              <p>Останній результат: {hub.last ? `${hub.last.testScore} з ${hub.last.maxScore}` : "ще немає"}</p>
-            </>
-          }
-          right={
-            <>
-              <p>{hub.last?.rating ? `Рейтинг: ${hub.last.rating} з 200` : "Рейтинг 100–200 після повного НМТ"}</p>
-              <p>
-                {hub.hasFullTest && hub.weak[0]
-                  ? `Слабка тема: ${hub.weak[0].label} (${hub.weak[0].percent}%)`
-                  : hub.hasFullTest
-                    ? "Слабкі теми з’являться після помилок у тесті"
-                    : "Слабкі теми — після повного НМТ"}
-              </p>
-            </>
-          }
+          last={hub.last}
+          correctPercent={hub.correctPercent}
+          scorePercent={hub.scorePercent}
+          scoreTrend={hub.scoreTrend}
+          weakTopic={hub.weakTopic}
+          weakTopicErrorPercent={hub.weakTopicErrorPercent}
+          hasFullTest={hub.hasFullTest}
         />
       </main>
     </PageLayout>
