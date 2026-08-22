@@ -1,51 +1,159 @@
 .wrap {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 28px;
 }
 
+.searchRow {
+  display: flex;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.searchLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.searchInput {
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 16px;
+  font-size: 16px;
+  outline: none;
+  width: 100%;
+  color: var(--ink);
+  background: var(--surface);
+  transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+
+.searchInput:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green-ring);
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
 @media (min-width: 768px) {
-  .wrap {
+  .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: 32px;
+    align-items: start;
   }
 }
 
 @media (min-width: 1280px) {
-  .wrap {
-    gap: 64px;
+  .grid {
+    gap: 48px;
   }
 }
 
-.title {
-  margin: 0 0 12px;
+.column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
   font-size: 18px;
   font-weight: 700;
 }
 
 @media (min-width: 768px) {
-  .title {
+  .sectionTitle {
     font-size: 20px;
   }
 }
 
-@media (min-width: 1280px) {
-  .title {
-    font-size: 22px;
-  }
+.algebra {
+  color: var(--accent-algebra);
 }
 
-.list {
+.geometry {
+  color: var(--accent-geometry);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  background: var(--surface);
+}
+
+.card.algebra {
+  border-top-color: var(--accent-algebra);
+  background: linear-gradient(var(--accent-algebra-soft), var(--accent-algebra-soft)), var(--surface);
+}
+
+.card.geometry {
+  border-top-color: var(--accent-geometry);
+  background: linear-gradient(var(--accent-geometry-soft), var(--accent-geometry-soft)), var(--surface);
+}
+
+.cardTitle {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.rows {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 16px;
 }
 
-@media (min-width: 768px) {
-  .list {
-    font-size: 17px;
-  }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.row:first-child {
+  border-top: none;
+}
+
+.rowTitle {
+  flex: 1 1 160px;
+  min-width: 0;
+  font-size: 15px;
+}
+
+.rowFormula {
+  display: block;
+  flex: 0 1 auto;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.empty {
+  margin: 0;
+  padding: 24px 0;
+  text-align: center;
+  font-size: 16px;
+  color: var(--subtle);
 }
